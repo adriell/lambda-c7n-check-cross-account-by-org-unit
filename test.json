@@ -1,0 +1,84 @@
+{
+    "version": "0.9.11",
+    "event": null,
+    "account_id": "67462222",
+    "account": "adriellucas",
+    "region": "us-east-1",
+    "action": {
+      "type": "invoke-lambda",
+      "function": "check-account-aws"
+    },
+    "policy": {
+      "name": "s3-cross-account",
+      "description": "Checks S3 for buckets with cross-account access and\nremoves the cross-account access.\n",
+      "resource": "aws.s3",
+      "region": "us-east-1",
+      "filters": [
+        {
+          "type": "cross-account"
+        }
+      ],
+      "actions": [
+        {
+          "type": "invoke-lambda",
+          "function": "check-account-aws"
+        }
+      ]
+    },
+    "resources": [
+      {
+        "Name": "bucket-para-meu-bb",
+        "CreationDate": "2021-06-20T19:59:32+00:00",
+        "Location": {
+          "LocationConstraint": null
+        },
+        "Tags": [],
+        "Policy": "{\"Version\":\"2008-10-17\",\"Statement\":[{\"Sid\":\"PublicReadForGetTestBucketObjects\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"*\"},\"Action\":\"s3:*\",\"Resource\":\"arn:aws:s3:::bucket-para-meu-bb/*\"},{\"Sid\":\"\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"arn:aws:iam::233232323:root\"},\"Action\":\"s3:*\",\"Resource\":[\"arn:aws:s3:::bucket-para-meu-bb/*\",\"arn:aws:s3:::bucket-para-meu-bb\"]}]}",
+        "Acl": {
+          "Owner": {
+            "DisplayName": "adriell.ads",
+            "ID": "2c8ed78410647160c8462fec826ad31d787e23fa95da18b200008149e577a4e8"
+          },
+          "Grants": [
+            {
+              "Grantee": {
+                "DisplayName": "adriell.ads",
+                "ID": "eee37a4e8",
+                "Type": "CanonicalUser"
+              },
+              "Permission": "FULL_CONTROL"
+            }
+          ]
+        },
+        "Replication": null,
+        "Versioning": {},
+        "Website": null,
+        "Logging": {},
+        "Notification": {},
+        "Lifecycle": null,
+        "CrossAccountViolations": [
+          {
+            "Sid": "PublicReadForGetTestBucketObjects",
+            "Effect": "Allow",
+            "Principal": {
+              "AWS": "*"
+            },
+            "Action": "s3:*",
+            "Resource": "arn:aws:s3:::bucket-para-meu-bb/*"
+          },
+          {
+            "Sid": "",
+            "Effect": "Allow",
+            "Principal": {
+              "AWS": "arn:aws:iam::23333333:root"
+            },
+            "Action": "s3:*",
+            "Resource": [
+              "arn:aws:s3:::bucket-para-meu-bb/*",
+              "arn:aws:s3:::bucket-para-meu-bb"
+            ]
+          }
+        ]
+      }
+    ]
+  }
