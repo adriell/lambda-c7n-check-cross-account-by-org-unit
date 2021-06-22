@@ -1,0 +1,14 @@
+policies:
+  - name: s3-cross-account
+    description: |
+      Checks S3 for buckets with cross-account access and
+      removes the cross-account access.
+    resource: aws.s3
+    region: us-east-1
+    filters:
+        - type: cross-account
+          whitelist:
+            - "2333333333"
+    actions:
+      - type: invoke-lambda
+        function: 'check-account-aws'
